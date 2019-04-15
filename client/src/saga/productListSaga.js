@@ -11,12 +11,13 @@ function* fetchItemsAsync({payload}) {
         const { result } = yield call(fetchSearch, payload);
         yield put(fetchItemsSuccess(result));
     } catch (e) {
+        console.log(e)
         yield put(fetchItemsError(e));
     }
 }
 
-function* mySaga() {
+function* productListSaga() {
   yield takeLatest(actions.FETCH_ITEMS, fetchItemsAsync);
 }
 
-export default mySaga;
+export default productListSaga;

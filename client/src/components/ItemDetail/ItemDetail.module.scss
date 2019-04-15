@@ -1,37 +1,63 @@
-@import '../../styles/colors';
+@import '../../styles/variables';
+@import '../../styles/mediaQuery';
 
 .container {
     @extend %container;
 }
 
+.loader {
+    @extend %loader
+}
+
 .detail {
     @extend %paper;
-    padding: $spacing2;
+    border-radius: 0;
+    padding: $spacing1;
     display: grid;
-    grid-template-columns: 1fr 30%;
-    grid-gap: $spacing2;;
+    grid-template-columns: 1fr;
+    grid-gap: $spacing1;
+    @include lg {
+        border-radius: $radius;
+        grid-template-columns: 1fr 30%;
+        grid-gap: $spacing2;
+        padding: $spacing2;
+    }
 }
 
 .image {
     width: 100%;
+    border-radius: $radius;
 }
 
 .title {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
-    margin-bottom: $spacing2;
+    margin-bottom: 24px;
+    word-break: break-all;
+    @include lg {
+        font-size: 24px;
+        margin-bottom: $spacing1;
+    }
 }
 
 .caption {
     font-size: 14px;
     color: $darkGrey;
-    margin-bottom: $spacing1;
+    margin-bottom: 12px;
+    display: block;
+    @include lg {
+        margin-bottom: $spacing1;
+    }
 }
 
 .value {
     font-size: 46px;
-    font-weight: 400;
-    margin: $spacing2 0;
+    font-weight: 300;
+    margin: 24px 0;
+    @include lg {
+        font-weight: 400;
+        margin: $spacing2 0;
+    }
     span {
         font-size: 22px;
         transform: translateY(-17px);
@@ -53,13 +79,20 @@
 
 .description {
     h4 {
-        font-size: 28px;
-        color: $darkGrey;
+        font-size: 24px;
+        color: $black;
         margin-bottom: $spacing2;
+        font-weight: 500;
+        @include lg {
+            font-size: 28px;
+        }
     }
     p {
-        font-size: 16px;
+        font-size: 14px;
         color: $mediumGrey;
         line-height: 1.6;
+        @include lg {
+            font-size: 16px;
+        }
     }
 }

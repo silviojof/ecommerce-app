@@ -1,12 +1,29 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchDetail, clearDetail } from '../../redux/ducks/productDetail';
 import Breadcrumb from '../Breadcrumb';
-import Mobile1 from '../../images/mobile1.jpg';
+import Loader from '../Loader';
 
 import styles from './ItemDetail.module.scss';
 
-const ItemDetail = ({ location, match, fetchDetails, details, clearDetail }) => {
+const parseCondition = status => {
+    let condition;
+    switch(status) {
+        case 'new':
+        case 'nuevo':
+            condition = 'Nuevo';
+            break;
+        case 'used':
+            condition = 'Usado';
+            break;
+        default:
+            condition = status;
+    }
+    return condition;
+}
+
+const ItemDetail = ({ location, match, fetchDetails, details, clearDetail, isLoading }) => {
     useEffect(() => {
         if (match.params.id) {
             fetchDetails(match.params.id)
@@ -15,6 +32,15 @@ const ItemDetail = ({ location, match, fetchDetails, details, clearDetail }) => 
             clearDetail();
         };
       }, [location.search, match.params.id]);
+
+    if (isLoading) {
+        return (
+            <div className={styles.loader}>
+                <Loader />
+            </div>
+        )
+    }
+    
     return (
             <div className={styles.container}>
                 <Breadcrumb />
@@ -23,13 +49,14 @@ const ItemDetail = ({ location, match, fetchDetails, details, clearDetail }) => 
                     <section className={styles.detail}>
                         <img
                             className={styles.image}
-                            src={Mobile1} alt="product"
+                            src={details.picture} alt="product"
                         />
                         <div>
-                            <span className={styles.caption}>{`${details.condition} - ${details.sold_quantity} vendidos`}</span>
+                            <span className={styles.caption}>{`${parseCondition(details.condition)} - ${details.sold_quantity} vendidos`}</span>
                             <h5 className={styles.title}>{details.title}</h5>
                             <h3 className={styles.value}>
-                                {`${details.price.currency} ${details.price.amount}`}<span>${details.price.decimals}</span>
+                                {`${details.price.currency} ${details.price.amount.toLocaleString('es-AR')}`}
+                                <span>{details.price.decimals || '00'}</span>
                             </h3>
                             <button className={styles.button}>Comprar</button>
                         </div>
@@ -43,9 +70,24 @@ const ItemDetail = ({ location, match, fetchDetails, details, clearDetail }) => 
     )
 };
 
+ItemDetail.propTypes = {
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    fetchDetails: PropTypes.func.isRequired,
+    details: PropTypes.object,
+    clearDetail: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+};
+
+ItemDetail.defaultProps = {
+    details: {}
+};
+
+
 const mapStateToProps = (state) => {
     return {
-        details: state.productDetail.details
+        details: state.productDetail.details,
+        isLoading: state.productDetail.isLoadingDetails
     }
 }
 

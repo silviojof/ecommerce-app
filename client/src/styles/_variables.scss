@@ -24,3 +24,11 @@ $radius: 3px;
     border-radius: $radius;
     margin-bottom: $spacing2;
 }
+
+%loader {
+    width: 100%;
+    height: calc(100vh - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

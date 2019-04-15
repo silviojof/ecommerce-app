@@ -4,20 +4,23 @@ import {
     fetchDetailError,
     actions
 } from '../redux/ducks/productDetail';
+import {
+    setCategories
+} from '../redux/ducks/productList';
 import { fetchDetail } from '../api';
 
 function* fetchDetailAsync({payload}) {
     try {
         const { result } = yield call(fetchDetail, payload);
-        console.log(result)
         yield put(fetchDetailSuccess(result));
+        yield put(setCategories(result.categories));
     } catch (e) {
         yield put(fetchDetailError(e));
     }
 }
 
-function* mySaga() {
+function* productDetailSaga() {
   yield takeLatest(actions.FETCH_DETAIL, fetchDetailAsync);
 }
 
-export default mySaga;
+export default productDetailSaga;

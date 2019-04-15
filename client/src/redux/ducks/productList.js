@@ -3,6 +3,7 @@ export const actions = {
     FETCH_ITEMS: 'FETCH_ITEMS',
     FETCH_ITEMS_SUCCESS: 'FETCH_ITEMS_SUCCESS',
     FETCH_ITEMS_ERROR: 'FETCH_ITEMS_ERROR',
+    SET_CATEGORIES: 'SET_CATEGORIES',
     CLEAR_ITEMS: 'CLEAR_ITEMS'
 };
 const initialState = {
@@ -29,9 +30,13 @@ export const fetchItemsError = ({ payload }) => ({
     payload
 });
 
-export const clearItems = ({ payload }) => ({
-    type: actions.CLEAR_ITEMS,
+export const setCategories = payload => ({
+    type: actions.SET_CATEGORIES,
     payload
+});
+
+export const clearItems = () => ({
+    type: actions.CLEAR_ITEMS
 });
 
 const productListReducer = (state = initialState, action) => {
@@ -49,6 +54,9 @@ const productListReducer = (state = initialState, action) => {
         }
         case actions.FETCH_ITEMS_ERROR: {
             return { ...state, isLoadingItems: false, error: true };
+        }
+        case actions.SET_CATEGORIES: {
+            return { ...state, categories: action.payload };
         }
         case actions.CLEAR_ITEMS: {
             return { 

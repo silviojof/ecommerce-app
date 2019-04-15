@@ -1,10 +1,14 @@
-@import '../../styles/colors';
+@import '../../styles/variables';
+@import '../../styles/mediaQuery';
 
 .breadcrumb {
     font-size: 14px;
     color: $mediumGrey;
     font-weight: 400;
-    margin: $spacing1 0;
+    margin: $spacing1;
+    @include lg {
+        margin: $spacing1 0;
+    }
     .breadcrumbItem {
         display: inline-block;
         .last {

@@ -1,4 +1,5 @@
-@import '../../styles/colors';
+@import '../../styles/variables';
+@import '../../styles/mediaQuery';
 
 .nav-header {
     background-color: $yellow;
@@ -26,15 +27,19 @@
 }
 
 .image {
-    width: 56px;
-    margin-right: 24px;
+    width: 42px;
+    margin-right: 12px;
+    @include lg {
+        width: 56px;
+        margin-right: 24px;
+    }
 }
 
 .input {
     flex: 1;
     border: none;
     font-size: 18px;
-    color: $mediumGrey;
+    color: $darkGrey;
     padding: 8px 16px;
     border-top-left-radius: $radius;
     border-bottom-left-radius: $radius;
@@ -43,7 +48,7 @@
         outline: none;
     }
     &::placeholder {
-        color: $mediumGrey;
+        color: $darkGrey;
     }
 }
 .button {
@@ -63,5 +68,8 @@
     @extend %container;
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
+    @include lg {
+        padding: 10px 0;
+    }
 }

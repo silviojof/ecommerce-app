@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import styles from './Breadcrumb.module.scss';
@@ -23,12 +24,15 @@ const Breadcrumb = ({ categories }) => {
     )
 };
 
+Breadcrumb.propTypes = {
+    categories: PropTypes.arrayOf((PropTypes.string)).isRequired,
+};
+
 const mapStateToProps = (state) => {
     return {
         categories: state.productList.categories
     }
 }
-
 
 export default connect(
     mapStateToProps,

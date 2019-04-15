@@ -1,20 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ic_shipping from '../../images/ic_shipping.png';
 import ic_shipping2x from '../../images/ic_shipping@2x.png';
-import Mobile1 from '../../images/mobile1.jpg';
 
 import styles from './Items.module.scss';
+
+const parseCurrency = curr => {
+    let symbol;
+    switch(curr) {
+        case 'ARS':
+        case 'USD':
+            symbol = '$';
+            break;
+        case 'BRL':
+            symbol = 'R$';
+            break;
+        default:
+            symbol = curr;
+    }
+    return symbol;
+}
 
 const ItemDetail = ({ data }) => {
     return (
         <article className={styles.article}>
             <a href={`/items/${data.id}`} className={styles.articleGrid}>
                 <div className={styles.imageContainer}>
-                    <img src={Mobile1} alt="product" />
+                    <img src={data.picture} alt="product" />
                 </div>
                 <div className={styles.infoContainer}>
                     <h3>
-                        {`${data.price.currency} ${data.price.amount}`}
+                        {`${parseCurrency(data.price.currency)} ${data.price.amount.toLocaleString('es-AR')}`}
                         {
                             data.free_shipping &&
                             <img src={ic_shipping} srcSet={`${ic_shipping2x} 2x`} alt="shipping status" />
@@ -29,6 +45,20 @@ const ItemDetail = ({ data }) => {
             <hr />
         </article>
     )
+};
+
+ItemDetail.propTypes = {
+    data: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        price: PropTypes.shape({
+            currency: PropTypes.string.isRequired,
+            amount: PropTypes.number.isRequired,
+        }).isRequired,
+        free_shipping: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default ItemDetail;

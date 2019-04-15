@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from "react-router";
-import { fetchItems } from '../../redux/ducks/productList';
 import Logo_ML from '../../images/Logo_ML.png';
 import Logo_ML2x from '../../images/Logo_ML@2x.png';
 import ic_Search from '../../images/ic_Search.png';
@@ -9,12 +8,11 @@ import ic_Search2x from '../../images/ic_Search@2x.png';
 
 import styles from './Header.module.scss';
 
-const Header = ({ fetchItems, history }) => {
+const Header = ({ history }) => {
     const [search, setSearch] = useState('');
     const submit = (e) => {
         e.preventDefault();
         history.push(`/items?search=${search}`)
-        // fetchItems(search);
     }
     return (
         <header className={styles['nav-header']}>
@@ -42,13 +40,8 @@ const Header = ({ fetchItems, history }) => {
     )
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-      fetchItems: args => dispatch(fetchItems(args)),
-    }
-  }
+Header.propTypes = {
+    history: PropTypes.object.isRequired,
+};
 
-export default withRouter(connect(
-    null,
-    mapDispatchToProps
-)(Header));
+export default withRouter(Header);
