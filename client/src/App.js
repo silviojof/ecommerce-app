@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
-
-const Search = () => <h1>Search</h1>
-const Result = () => <h1>Result</h1>
-const Details = () => <h1>Details</h1>
+import ItemsList from './components/ItemsList';
+import ItemDetail from './components/ItemDetail';
 
 class App extends Component {
   render() {
@@ -13,9 +10,9 @@ class App extends Component {
       <Router>
       <div>
         <Header />
-        <Route path="/" exact component={Search} />
-        <Route path="/result/" component={Result} />
-        <Route path="/details/" component={Details} />
+        <Route path="/" exact component={() => null} />
+        <Route path="/items/:id" exact component={ItemDetail} />
+        <Route path="/items/" exact component={ItemsList} />
       </div>
     </Router>
   );

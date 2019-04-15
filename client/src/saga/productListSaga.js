@@ -8,9 +8,8 @@ import { fetchSearch } from '../api';
 
 function* fetchItemsAsync({payload}) {
     try {
-        const { data } = yield call(fetchSearch, payload);
-        console.log(data)
-        yield put(fetchItemsSuccess(data.product_results));
+        const { result } = yield call(fetchSearch, payload);
+        yield put(fetchItemsSuccess(result));
     } catch (e) {
         yield put(fetchItemsError(e));
     }

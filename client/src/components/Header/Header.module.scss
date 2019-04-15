@@ -1,0 +1,67 @@
+@import '../../styles/colors';
+
+.nav-header {
+    background-color: $yellow;
+    border: 0;
+    position: relative;
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    border-radius: $radius;
+    height: 40px;
+}
+
+.form {
+    flex: 1;
+}
+
+.image {
+    width: 56px;
+    margin-right: 24px;
+}
+
+.input {
+    flex: 1;
+    border: none;
+    font-size: 18px;
+    color: $mediumGrey;
+    padding: 8px 16px;
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    margin: 0;
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: $mediumGrey;
+    }
+}
+.button {
+    background-color: $lightGrey;
+    border: none;
+    width: 40px;
+    margin: 0;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container {
+    @extend %container;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}

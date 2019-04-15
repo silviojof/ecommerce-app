@@ -1,0 +1,72 @@
+@import '../../styles/colors';
+
+.container {
+    @extend %container;
+}
+
+.products {
+    @extend %paper;
+}
+
+.article {
+    .articleGrid {
+        text-decoration: none;
+        color: inherit;
+        outline: 0;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 180px 1fr 180px;
+        padding: $spacing1;
+    }
+    hr {
+        width: 95%;
+        height: 1px;
+        background-color: $lightGrey;
+        border: none;
+    }
+    &:last-of-type {
+        hr {
+            display: none;
+        }
+    }
+}
+
+.imageContainer {
+    width: 180px;
+    height: 180px;
+    img {
+        border-radius: $radius;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.infoContainer {
+    padding: $spacing1;
+    h3 {
+        margin-bottom: $spacing2;
+        font-weight: 500;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        img {
+            margin-left: 10px;
+        }
+    }
+    p {
+        font-size: 18px;
+        margin: 0;
+    }
+}
+
+.locationContainer {
+    padding: $spacing1; 
+    h6 {
+        font-size: 12px;
+        font-weight: 400;
+        color: $mediumGrey;
+        margin: 0;
+    }
+}

@@ -2,11 +2,13 @@
 export const actions = {
     FETCH_ITEMS: 'FETCH_ITEMS',
     FETCH_ITEMS_SUCCESS: 'FETCH_ITEMS_SUCCESS',
-    FETCH_ITEMS_ERROR: 'FETCH_ITEMS_ERROR'
+    FETCH_ITEMS_ERROR: 'FETCH_ITEMS_ERROR',
+    CLEAR_ITEMS: 'CLEAR_ITEMS'
 };
 const initialState = {
     isLoadingItems: false,
     items: [],
+    categories: [],
     error: false
 };
 
@@ -27,16 +29,34 @@ export const fetchItemsError = ({ payload }) => ({
     payload
 });
 
+export const clearItems = ({ payload }) => ({
+    type: actions.CLEAR_ITEMS,
+    payload
+});
+
 const productListReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.FETCH_ITEMS: {
             return { ...state, isLoadingItems: true };
         }
         case actions.FETCH_ITEMS_SUCCESS: {
-            return { ...state, items: action.payload };
+            return { 
+                ...state,
+                isLoadingItems: false,
+                items: action.payload.items,
+                categories: action.payload.categories,
+            };
         }
         case actions.FETCH_ITEMS_ERROR: {
-            return { ...state, error: true };
+            return { ...state, isLoadingItems: false, error: true };
+        }
+        case actions.CLEAR_ITEMS: {
+            return { 
+                ...state,
+                isLoadingItems: false,
+                items: [],
+                categories: [],
+            };
         }
         default: {
             return state;
