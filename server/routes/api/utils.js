@@ -4,12 +4,12 @@ module.exports = (n) => {
   if (isFloat) {
     return {
       amount: Number(isFloat[1]),
-      decimals: isFloat[2],
+      decimals: Number(isFloat[2]),
     };
   } else {
     return {
       amount: n,
-      decimals: '00',
+      decimals: 0,
     };
   }
 };

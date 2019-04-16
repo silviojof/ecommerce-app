@@ -63,13 +63,9 @@ ItemsList.propTypes = {
             amount: PropTypes.number.isRequired,
             decimals: PropTypes.number.isRequired,
         }),
-    }),),
+    })).isRequired,
     clearItems: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
-};
-
-ItemsList.defaultProps = {
-    productList: []
 };
 
 const mapStateToProps = (state) => {

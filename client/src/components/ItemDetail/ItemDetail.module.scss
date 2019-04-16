@@ -18,7 +18,7 @@
     grid-gap: $spacing1;
     @include lg {
         border-radius: $radius;
-        grid-template-columns: 1fr 30%;
+        grid-template-columns: 680px 1fr;
         grid-gap: $spacing2;
         padding: $spacing2;
     }
