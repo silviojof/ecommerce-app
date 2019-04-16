@@ -23,7 +23,7 @@ const parseCondition = status => {
     return condition;
 }
 
-const ItemDetail = ({ location, match, fetchDetails, details, clearDetail, isLoading }) => {
+export const ItemDetail = ({ location, match, fetchDetails, details, clearDetail, isLoading }) => {
     useEffect(() => {
         if (match.params.id) {
             fetchDetails(match.params.id)
@@ -35,7 +35,7 @@ const ItemDetail = ({ location, match, fetchDetails, details, clearDetail, isLoa
 
     if (isLoading) {
         return (
-            <div className={styles.loader}>
+            <div data-testid="loader" className={styles.loader}>
                 <Loader />
             </div>
         )
@@ -46,13 +46,17 @@ const ItemDetail = ({ location, match, fetchDetails, details, clearDetail, isLoa
                 <Breadcrumb />
                 {
                     details !== null &&
-                    <section className={styles.detail}>
+                    <section className={styles.detail} data-testid="content">
                         <img
                             className={styles.image}
                             src={details.picture} alt="product"
                         />
                         <div>
-                            <span className={styles.caption}>{`${parseCondition(details.condition)} - ${details.sold_quantity} vendidos`}</span>
+                            <span
+                                className={styles.caption}
+                            >
+                                {`${parseCondition(details.condition)} - ${details.sold_quantity} vendidos`}
+                            </span>
                             <h5 className={styles.title}>{details.title}</h5>
                             <h3 className={styles.value}>
                                 {`${details.price.currency} ${details.price.amount.toLocaleString('es-AR')}`}
@@ -74,15 +78,34 @@ ItemDetail.propTypes = {
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     fetchDetails: PropTypes.func.isRequired,
-    details: PropTypes.object,
+    details: PropTypes.shape({
+        picture: PropTypes.string.isRequired,
+        condition: PropTypes.string.isRequired,
+        sold_quantity: PropTypes.number.isRequired,
+        price: PropTypes.shape({
+            currency: PropTypes.string.isRequired,
+            amount: PropTypes.number.isRequired,
+            decimals: PropTypes.number.isRequired,
+        }),
+        description: PropTypes.string.isRequired,
+    }),
     clearDetail: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
 };
 
 ItemDetail.defaultProps = {
-    details: {}
+    details: {
+        picture: '',
+        condition: '',
+        sold_quantity: 0,
+        price: {
+            currency: '',
+            amount: 0,
+            decimals: 0,
+        },
+        description: '',
+    },
 };
-
 
 const mapStateToProps = (state) => {
     return {

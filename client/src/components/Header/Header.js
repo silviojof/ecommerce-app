@@ -8,7 +8,7 @@ import ic_Search2x from '../../images/ic_Search@2x.png';
 
 import styles from './Header.module.scss';
 
-const Header = ({ history }) => {
+export const Header = ({ history }) => {
     const [search, setSearch] = useState('');
     const submit = (e) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ const Header = ({ history }) => {
                             onChange={e => setSearch(e.target.value)}
                             value={search}
                         />
-                        <button type="submit" className={styles.button}>
+                        <button type="submit" data-testid="submit-button" className={styles.button}>
                             <img src={ic_Search} alt="bar" srcSet={`${ic_Search2x} 2x`} />
                         </button>
                     </div>

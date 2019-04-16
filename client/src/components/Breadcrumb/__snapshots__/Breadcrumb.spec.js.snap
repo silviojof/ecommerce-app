@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  class="breadcrumb"
+>
+  <div
+    class="breadcrumbItem"
+  >
+    <span
+      class=""
+    >
+      first
+    </span>
+    <span
+      class="breadcrumbArrow"
+    >
+      &gt;
+    </span>
+  </div>
+  <div
+    class="breadcrumbItem"
+  >
+    <span
+      class="last"
+    >
+      second
+    </span>
+  </div>
+</div>
+`;

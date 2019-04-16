@@ -11,7 +11,6 @@ function* fetchItemsAsync({payload}) {
         const { result } = yield call(fetchSearch, payload);
         yield put(fetchItemsSuccess(result));
     } catch (e) {
-        console.log(e)
         yield put(fetchItemsError(e));
     }
 }

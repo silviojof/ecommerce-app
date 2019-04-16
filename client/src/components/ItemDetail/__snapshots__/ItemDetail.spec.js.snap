@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  class="container"
+>
+  <div
+    class="breadcrumb"
+  >
+    <div
+      class="breadcrumbItem"
+    >
+      <span
+        class=""
+      >
+        first
+      </span>
+      <span
+        class="breadcrumbArrow"
+      >
+        &gt;
+      </span>
+    </div>
+    <div
+      class="breadcrumbItem"
+    >
+      <span
+        class="last"
+      >
+        second
+      </span>
+    </div>
+  </div>
+  <section
+    class="detail"
+    data-testid="content"
+  >
+    <img
+      alt="product"
+      class="image"
+      src=""
+    />
+    <div>
+      <span
+        class="caption"
+      >
+        Nuevo - 1 vendidos
+      </span>
+      <h5
+        class="title"
+      />
+      <h3
+        class="value"
+      >
+        ARS 23
+        <span>
+          12
+        </span>
+      </h3>
+      <button
+        class="button"
+      >
+        Comprar
+      </button>
+    </div>
+    <div
+      class="description"
+    >
+      <h4>
+        Descripción del produto
+      </h4>
+      <p>
+        description
+      </p>
+    </div>
+  </section>
+</div>
+`;

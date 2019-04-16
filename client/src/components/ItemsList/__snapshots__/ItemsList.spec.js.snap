@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  class="container"
+>
+  <div
+    class="breadcrumb"
+  >
+    <div
+      class="breadcrumbItem"
+    >
+      <span
+        class=""
+      >
+        first
+      </span>
+      <span
+        class="breadcrumbArrow"
+      >
+        &gt;
+      </span>
+    </div>
+    <div
+      class="breadcrumbItem"
+    >
+      <span
+        class="last"
+      >
+        second
+      </span>
+    </div>
+  </div>
+  <section
+    class="products"
+    data-testid="articles"
+  >
+    <article
+      class="article"
+    >
+      <a
+        class="articleGrid"
+        href="/items/MLA23"
+      >
+        <div
+          class="imageContainer"
+        >
+          <img
+            alt="product"
+            src=""
+          />
+        </div>
+        <div
+          class="infoContainer"
+        >
+          <h3>
+            $ 23
+            <img
+              alt="shipping status"
+              src="ic_shipping.png"
+              srcset="ic_shipping@2x.png 2x"
+            />
+          </h3>
+          <p>
+            title
+          </p>
+        </div>
+        <div
+          class="locationContainer"
+        >
+          <h6>
+            Buenos Aires
+          </h6>
+        </div>
+      </a>
+      <hr />
+    </article>
+  </section>
+</div>
+`;

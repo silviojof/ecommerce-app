@@ -8,7 +8,7 @@ import Loader from '../Loader';
 
 import styles from './Items.module.scss';
 
-const Items = ({ location, fetchItems, productList, clearItems, isLoading }) => {
+export const ItemsList = ({ location, fetchItems, productList, clearItems, isLoading }) => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const search = searchParams.get('search');
@@ -22,7 +22,7 @@ const Items = ({ location, fetchItems, productList, clearItems, isLoading }) => 
 
     if (isLoading) {
         return (
-            <div className={styles.loader}>
+            <div data-testid="loader" className={styles.loader}>
                 <Loader />
             </div>
         )
@@ -33,7 +33,7 @@ const Items = ({ location, fetchItems, productList, clearItems, isLoading }) => 
                 <Breadcrumb />
                 {
                     productList.length > 0 ?
-                    <section className={styles.products}>
+                    <section data-testid="articles" className={styles.products}>
                         {
                             productList.map(el => (
                                 <ItemDetail key={el.id} data={el} />
@@ -49,15 +49,26 @@ const Items = ({ location, fetchItems, productList, clearItems, isLoading }) => 
     )
 };
 
-Items.propTypes = {
+ItemsList.propTypes = {
     location: PropTypes.object.isRequired,
     fetchItems: PropTypes.func.isRequired,
-    productList: PropTypes.array,
+    productList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        condition: PropTypes.string.isRequired,
+        free_shipping: PropTypes.bool.isRequired,
+        price: PropTypes.shape({
+            currency: PropTypes.string.isRequired,
+            amount: PropTypes.number.isRequired,
+            decimals: PropTypes.number.isRequired,
+        }),
+    }),),
     clearItems: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
 };
 
-Items.defaultProps = {
+ItemsList.defaultProps = {
     productList: []
 };
 
@@ -78,4 +89,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Items);
+)(ItemsList);

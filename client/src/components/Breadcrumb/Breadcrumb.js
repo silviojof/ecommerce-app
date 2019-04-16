@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import styles from './Breadcrumb.module.scss';
 
-const Breadcrumb = ({ categories }) => {
+export const Breadcrumb = ({ categories }) => {
     return (
         <div className={styles.breadcrumb}>
             {

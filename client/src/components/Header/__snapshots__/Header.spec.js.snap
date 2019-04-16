@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<header
+  class="nav-header"
+>
+  <div
+    class="container"
+  >
+    <a
+      class="logo"
+      href="/"
+    >
+      <img
+        alt="logo"
+        class="image"
+        src="Logo_ML.png"
+        srcset="Logo_ML@2x.png 2x"
+      />
+    </a>
+    <form
+      class="form"
+    >
+      <div
+        class="form-container"
+      >
+        <input
+          aria-label="Search Item"
+          class="input"
+          placeholder="Nunca dejes de buscar"
+          type="text"
+          value=""
+        />
+        <button
+          class="button"
+          data-testid="submit-button"
+          type="submit"
+        >
+          <img
+            alt="bar"
+            src="ic_Search.png"
+            srcset="ic_Search@2x.png 2x"
+          />
+        </button>
+      </div>
+    </form>
+  </div>
+</header>
+`;
